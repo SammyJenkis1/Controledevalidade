@@ -1,0 +1,852 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ChocoPrime • Lista de Validade</title>
+<link href="https://unpkg.com/lucide-static/font/lucide.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* =============================
+   ChocoPrime UI — Edição Premium 2025
+   ============================= */
+:root{
+  /* Base */
+  --bg: #fff8f4;
+  --surface: #ffffff;
+  --surface-2: #fff4ee;
+  --stroke: #efe0d8;
+  --ring: #e8d6cc;
+
+  /* Paleta chocolate */
+  --choco-950:#1f1311;
+  --choco-900:#2b1917;
+  --choco-800:#3a231f;
+  --choco-700:#4b2e2b;
+  --choco-600:#6a3b32;
+  --choco-500:#7a4238;
+  --choco-400:#8c4a3e;
+  --caramel:#c07a57;
+
+  /* Estados */
+  --ok:#2e7d32;
+  --warn:#b26a00;
+  --danger:#b00020;
+
+  /* Sombras */
+  --shadow-s: 0 1px 2px rgba(0,0,0,.05), 0 6px 20px rgba(76,45,41,.08);
+  --shadow-m: 0 12px 30px rgba(76,45,41,.12);
+
+  /* Tipografia fluida */
+  --fs-xs: clamp(.75rem,.7rem + .2vw,.82rem);
+  --fs-sm: clamp(.86rem,.82rem + .25vw,.95rem);
+  --fs-md: clamp(.98rem,.94rem + .3vw,1.05rem);
+  --fs-lg: clamp(1.08rem,1.02rem + .6vw,1.24rem);
+  --fs-xl: clamp(1.22rem,1.06rem + 1.2vw,1.5rem);
+
+  /* Radii */
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  /* Motion */
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#181211;
+    --surface:#211816;
+    --surface-2:#241a18;
+    --stroke:#3a2a26;
+    --ring:#3d2c28;
+    --choco-900:#efe5e2;
+    --choco-800:#f3eae7;
+    --choco-700:#f8f1ee;
+    --choco-600:#e6d1ca;
+    --choco-400:#d6b9ae;
+  }
+  body{color:#f3ece9}
+}
+
+/* Reset básico */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Inter',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  font-size:var(--fs-md);
+  color:var(--choco-900);
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #ffe9df 0%, var(--bg) 35%),
+    var(--bg);
+}
+
+/* Utils */
+.container{max-width:1200px;margin-inline:auto;padding:16px}
+.grid{display:grid;gap:18px}
+@media(min-width:980px){.grid{grid-template-columns:1.1fr .9fr}}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--stroke);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow-s);
+  overflow:hidden;
+}
+.card h3{
+  margin:0;padding:14px 16px;
+  font-size:var(--fs-sm);font-weight:800;letter-spacing:.2px;
+  color:var(--choco-700);
+  border-bottom:1px solid var(--stroke);
+  background:linear-gradient(180deg,var(--surface),var(--surface-2));
+}
+.card .content{padding:16px}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:50;
+  border-bottom:1px solid var(--stroke);
+  background:rgba(255,255,255,.7);
+  backdrop-filter:saturate(1.3) blur(10px);
+}
+@media(prefers-color-scheme:dark){ header{ background:rgba(33,24,22,.6) } }
+.topbar{display:grid;gap:12px}
+@media(min-width:720px){.topbar{grid-template-columns:auto 1fr auto}}
+
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-weight:900;font-size:var(--fs-lg);letter-spacing:.2px;
+  color:var(--choco-700)
+}
+.logo{
+  width:40px;height:40px;border-radius:50%;position:relative;overflow:hidden;
+  background:
+    radial-gradient(90% 90% at 30% 20%, var(--choco-600) 0%, var(--choco-700) 60%, var(--choco-900) 100%);
+  box-shadow: inset 0 6px 18px rgba(75,46,43,.35), 0 2px 6px rgba(0,0,0,.08);
+}
+.brand small{color:var(--caramel);font-weight:800}
+
+/* Inputs */
+.input, .select{
+  width:100%;
+  padding:12px 14px;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--stroke);
+  border-radius:14px;
+  outline:none;
+  transition:border .2s var(--ease), box-shadow .2s var(--ease), transform .1s var(--ease);
+}
+.input::placeholder{color:#a78d86}
+.input:focus,.select:focus{
+  border-color:var(--ring);
+  box-shadow:0 0 0 6px color-mix(in srgb, var(--ring) 45%, transparent);
+}
+
+/* Toolbar layout */
+.toolbar{display:grid;gap:8px;align-items:center}
+@media(min-width:960px){.toolbar{grid-template-columns:1fr 220px 160px 160px}}
+
+.switch{
+  --h: 34px;
+  position:relative;display:inline-flex;align-items:center;gap:10px;
+  font-size:var(--fs-sm);color:var(--choco-700);
+}
+.switch input{display:none}
+.switch .track{
+  width:58px;height:var(--h);border-radius:var(--h);
+  background:var(--surface-2);border:1px solid var(--stroke);position:relative;
+  transition:all .25s var(--ease);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.02);
+}
+.switch .thumb{
+  width:26px;height:26px;border-radius:50%;position:absolute;top:3.5px;left:4px;
+  background:linear-gradient(180deg,#fff,#f6f0ed);
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+  transition:left .25s var(--ease);
+}
+.switch input:checked + .track{background:linear-gradient(90deg,#c07a57,#8c4a3e);border-color:transparent}
+.switch input:checked + .track .thumb{left:28px}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 16px;border:none;border-radius:14px;cursor:pointer;font-weight:800;letter-spacing:.2px;
+  color:#fff;background:linear-gradient(90deg,#c07a57,#8c4a3e);
+  box-shadow:0 10px 18px rgba(140,74,62,.18), inset 0 1px 0 rgba(255,255,255,.45);
+  transition:transform .12s var(--ease), box-shadow .12s var(--ease), opacity .2s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 14px 24px rgba(140,74,62,.24)}
+.btn:active{transform:translateY(0) scale(.99)}
+.btn.secondary{ color:var(--choco-800); background:linear-gradient(180deg,#efe3dc,#e3d3ca); box-shadow: inset 0 4px 12px rgba(139,98,85,.16) }
+.btn.whats{background:linear-gradient(90deg,#25d366,#128c7e)}
+.btn.icon{padding:10px 12px}
+.btn.ghost{background:transparent;color:var(--choco-700);border:1px dashed var(--stroke)}
+
+.row{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:680px){.row{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.row-3{grid-template-columns:1fr 1fr 1fr}}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  padding:8px 12px;border-radius:999px;border:1px solid var(--stroke);
+  background:var(--surface-2);font-size:var(--fs-xs);cursor:pointer;user-select:none;
+  transition:all .15s var(--ease)
+}
+.chip:hover{transform:translateY(-1px)}
+.chip.active{background:var(--choco-700);color:#fff;border-color:transparent;box-shadow:0 6px 14px rgba(75,46,43,.18)}
+
+/* Badges */
+.badge{ font-size:var(--fs-xs);padding:6px 10px;border-radius:999px;display:inline-flex;gap:6px;align-items:center }
+.tag-today{background:#ffeaea;color:var(--danger)}
+.tag-near {background:#fff6e5;color:var(--warn)}
+.tag-ok   {background:#e8f5e9;color:var(--ok)}
+.tag-dead {background:#ffe0e0;color:var(--danger)}
+
+/* Progress pill */
+.progress{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden;border:1px solid var(--stroke)}
+.progress > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#c07a57,#8c4a3e)}
+
+/* Tabela responsiva */
+table{width:100%;border-collapse:separate;border-spacing:0 10px}
+thead th{ text-align:left; font-size:var(--fs-xs); color:color-mix(in srgb, var(--choco-700) 85%, #000 0%); padding:0 10px 6px }
+tbody tr{ background:var(--surface); border:1px solid var(--stroke); border-radius:14px; overflow:hidden; transition:transform .15s var(--ease), box-shadow .15s var(--ease)}
+tbody tr:hover{ transform:translateY(-2px); box-shadow:var(--shadow-m) }
+tbody td{ padding:14px 10px; vertical-align:middle; border-bottom:1px solid var(--stroke) }
+tbody td:last-child{ border-bottom:none }
+.actions{ display:flex; gap:8px; justify-content:flex-end }
+.icon-btn{ border:1px solid var(--stroke); background:var(--surface-2); padding:8px 10px; border-radius:10px; cursor:pointer; transition:all .15s var(--ease) }
+.icon-btn:hover{ background:var(--surface); transform:translateY(-1px) }
+
+@media (max-width:720px){
+  table thead{ display:none }
+  table, tbody, tr, td{ display:block; width:100% }
+  tbody tr{ margin-bottom:12px }
+  tbody td{ display:flex; justify-content:space-between; gap:12px; align-items:center }
+  tbody td::before{ content:attr(data-label); font-weight:700; color:var(--choco-700) }
+  .actions{ justify-content:flex-start }
+}
+
+/* Alert / Tip */
+.alert{ display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:14px; border:1px dashed var(--ring); background:linear-gradient(180deg,var(--surface),var(--surface-2)); }
+.alert .dot{width:10px;height:10px;border-radius:50%}
+
+/* Toast */
+.toast{ position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(16px); background:linear-gradient(180deg,var(--surface),var(--surface-2)); border:1px solid var(--stroke);box-shadow:var(--shadow-m); border-radius:14px;padding:10px 14px;font-size:var(--fs-sm); display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none; transition:transform .2s var(--ease),opacity .2s var(--ease) }
+.toast.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+
+/* Modal */
+.modal-backdrop{ position:fixed;inset:0;background:rgba(0,0,0,.35); display:none;align-items:center;justify-content:center;padding:16px;z-index:60 }
+.modal{ width:100%;max-width:560px;background:var(--surface);border:1px solid var(--stroke); border-radius:18px;box-shadow:var(--shadow-m);overflow:hidden }
+.modal header{background:linear-gradient(180deg,var(--surface),var(--surface-2));border-bottom:1px solid var(--stroke)}
+.modal.show + .modal-backdrop,.modal-backdrop.show{display:flex}
+
+/* Camera sheet */
+.sheet{position:fixed; left:0; right:0; bottom:0; background:var(--surface); border-top-left-radius:24px; border-top-right-radius:24px; border:1px solid var(--stroke); box-shadow:0 -10px 30px rgba(0,0,0,.18); padding:14px 16px; transform:translateY(110%); transition:transform .28s var(--ease); z-index:70}
+.sheet.show{transform:translateY(0)}
+.sheet header{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+.video-wrap{position:relative; aspect-ratio:16/10; background:#000; border-radius:12px; overflow:hidden; border:1px solid var(--stroke)}
+.video-wrap video{width:100%;height:100%;object-fit:cover}
+.qr-overlay{position:absolute; inset:0; display:grid; place-items:center; pointer-events:none}
+.qr-box{width:min(60%,340px); aspect-ratio:1; border:2px dashed rgba(255,255,255,.8); border-radius:12px}
+
+/* Print styles (Exportar PDF) */
+@media print{
+  header, .toolbar, .chips, .actions, .alert, .modal-backdrop, .sheet, #toast { display:none !important }
+  body{ background:#fff }
+  .card{ box-shadow:none; border:0 }
+}
+
+/* Animations */
+.pop{animation:pop .2s var(--ease)}
+@keyframes pop{from{transform:translateY(4px);opacity:.2}to{transform:translateY(0);opacity:1}}
+@media(prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand"><div class="logo" aria-hidden="true"></div> ChocoPrime <small>• Lista de Validade</small></div>
+      <div class="toolbar">
+        <input id="search" class="input" type="search" placeholder="Buscar por nome, marca ou categoria…" aria-label="Buscar" />
+        <select id="sort" class="select" aria-label="Ordenação">
+          <option value="dateAsc">Ordenar: Data (mais próximos)</option>
+          <option value="dateDesc">Ordenar: Data (mais distantes)</option>
+          <option value="nameAsc">Ordenar: Nome (A→Z)</option>
+          <option value="nameDesc">Ordenar: Nome (Z→A)</option>
+          <option value="daysAsc">Ordenar: Dias restantes</option>
+        </select>
+        <label class="switch" title="Priorizar vencendo hoje/perto">
+          <input id="pinCritical" type="checkbox" checked>
+          <span class="track"><span class="thumb"></span></span>
+          Priorizar críticos
+        </label>
+        <button id="qrBtn" class="btn ghost" type="button" title="Ler QR Code"><i class="lucide-qr-code"></i> QR Code</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="margin-top:16px;">
+    <div class="grid">
+      <!-- Formulário -->
+      <section class="card pop" aria-labelledby="formTitle">
+        <h3 id="formTitle">Adicionar / Editar produto</h3>
+        <div class="content">
+          <div class="alert" role="note" style="margin-bottom:12px;">
+            <div class="dot" style="background:var(--danger)"></div>
+            <div>
+              <strong>Dica:</strong> Itens <span class="badge tag-today">vencendo hoje</span> e
+              <span class="badge tag-near">≤ 3 dias</span> aparecem primeiro.
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom:10px;">
+            <input id="name" class="input" placeholder="Nome do produto *" aria-required="true" />
+            <input id="brand" class="input" placeholder="Marca (ex.: Cacau Show)" />
+          </div>
+
+          <div class="row" style="margin-bottom:10px;">
+            <input id="category" class="input" placeholder="Categoria (trufa, tablete, biscoito…)" />
+            <input id="batch" class="input" placeholder="Lote / Observações" />
+          </div>
+
+          <div class="row row-3" style="margin-bottom:6px;">
+            <label style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:var(--fs-xs);color:var(--choco-600)">Validade *</span>
+              <input id="expiry" class="input" type="date" aria-required="true" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:var(--fs-xs);color:var(--choco-600)">Quantidade</span>
+              <input id="qty" class="input" type="number" min="1" value="1" />
+            </label>
+            <label style="display:flex;flex-direction:column;gap:6px;">
+              <span style="font-size:var(--fs-xs);color:var(--choco-600)">Marca atenção</span>
+              <select id="flag" class="select">
+                <option value="">Nenhum</option>
+                <option value="today">Vence hoje</option>
+                <option value="near">≤ 3 dias</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="chips" id="quickChips" style="margin:8px 0 14px;">
+            <button class="chip" data-days="0" type="button">Hoje</button>
+            <button class="chip" data-days="3" type="button">+3 dias</button>
+            <button class="chip" data-days="7" type="button">+7 dias</button>
+            <button class="chip" data-days="30" type="button">+30 dias</button>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+            <button id="saveBtn" class="btn" type="button"><i class="lucide-save"></i> <span>Salvar</span></button>
+            <button id="clearBtn" class="btn secondary" type="button"><i class="lucide-erase"></i> <span>Limpar</span></button>
+
+            <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+              <button id="exportJsonBtn" class="btn secondary icon" title="Exportar JSON" type="button"><i class="lucide-download"></i></button>
+              <button id="importJsonBtn" class="btn secondary icon" title="Importar JSON" type="button"><i class="lucide-upload"></i></button>
+              <button id="exportCsvBtn" class="btn secondary icon" title="Exportar CSV (Excel)" type="button"><i class="lucide-table"></i></button>
+              <button id="printBtn" class="btn secondary icon" title="Exportar PDF (impressão)" type="button"><i class="lucide-file-text"></i></button>
+              <button id="whatsBtn" class="btn whats" type="button"><i class="lucide-message-circle"></i> <span>Enviar Lista</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Painel lateral -->
+      <aside class="card pop" aria-labelledby="sideTitle">
+        <h3 id="sideTitle">Atenção & Ranking</h3>
+        <div class="content">
+          <div class="row" style="margin-bottom:12px;">
+            <div class="card" style="border:1px dashed var(--stroke)">
+              <h3 style="border:0;background:none;padding:12px 16px 0 16px">Vencem hoje</h3>
+              <div class="content" style="padding-top:8px">
+                <ul id="todayList" class="rank" style="list-style:none;padding-left:0;margin:0"></ul>
+              </div>
+            </div>
+            <div class="card" style="border:1px dashed var(--stroke)">
+              <h3 style="border:0;background:none;padding:12px 16px 0 16px">Perto (≤ 3 dias)</h3>
+              <div class="content" style="padding-top:8px">
+                <ul id="nearList" class="rank" style="list-style:none;padding-left:0;margin:0"></ul>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="border:1px dashed var(--stroke)">
+            <h3 style="border:0;background:none;padding:12px 16px 0 16px">Ranking — mais adicionados</h3>
+            <div class="content" style="padding-top:8px">
+              <ul id="ranking" class="rank" style="list-style:none;padding-left:0;margin:0"></ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Lista -->
+      <section class="card pop" style="grid-column:1/-1;" aria-labelledby="listTitle">
+        <h3 id="listTitle">Produtos</h3>
+        <div class="content">
+          <div class="chips" id="filters" style="margin-bottom:10px;">
+            <button class="chip active" data-filter="all" type="button">Todos</button>
+            <button class="chip" data-filter="today" type="button">Vencem hoje</button>
+            <button class="chip" data-filter="near" type="button">≤ 3 dias</button>
+            <button class="chip" data-filter="ok" type="button">&gt; 3 dias</button>
+            <button class="chip" data-filter="expired" type="button">Vencidos</button>
+          </div>
+
+          <div aria-live="polite" aria-atomic="true">
+            <table id="table" role="table" aria-label="Tabela de produtos">
+              <thead>
+                <tr>
+                  <th>Produto</th>
+                  <th>Categoria</th>
+                  <th>Validade</th>
+                  <th>Dias</th>
+                  <th>Qtd</th>
+                  <th>Status</th>
+                  <th style="text-align:right">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal WhatsApp -->
+  <div id="waBackdrop" class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="waTitle">
+      <header style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px">
+        <h4 id="waTitle" style="margin:0;color:var(--choco-700)">Enviar lista para WhatsApp</h4>
+        <button id="waClose" class="btn secondary icon" type="button" aria-label="Fechar"><i class="lucide-x"></i></button>
+      </header>
+      <div style="padding:16px;display:grid;gap:10px">
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:var(--fs-xs);color:var(--choco-600)">Número (opcional, com DDI/DDDs, ex: 55 49 9159-9778)</span>
+          <input id="waNumber" class="input" placeholder="Se vazio, abre apenas com o texto pronto" />
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-size:var(--fs-xs);color:var(--choco-600)">Filtro a enviar</span>
+          <select id="waScope" class="select">
+            <option value="view">Somente itens visíveis (filtros/busca/ordem atuais)</option>
+            <option value="all">Todos os itens</option>
+            <option value="critical">Apenas críticos (hoje e ≤3 dias)</option>
+          </select>
+        </label>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button id="waSend" class="btn whats" type="button"><i class="lucide-send"></i> Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Sheet -->
+  <div id="qrSheet" class="sheet" aria-hidden="true">
+    <header>
+      <strong style="color:var(--choco-700);display:flex;align-items:center;gap:8px"><i class="lucide-qr-code"></i> Leitor de QR Code</strong>
+      <div style="display:flex;gap:8px">
+        <button id="qrPick" class="btn secondary icon" type="button" title="Escolher imagem"><i class="lucide-image"></i></button>
+        <button id="qrClose" class="btn secondary icon" type="button" title="Fechar"><i class="lucide-chevron-down"></i></button>
+      </div>
+    </header>
+    <div class="video-wrap">
+      <video id="qrVideo" playsinline></video>
+      <div class="qr-overlay"><div class="qr-box"></div></div>
+    </div>
+    <input id="qrFile" type="file" accept="image/*" hidden>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <i class="lucide-info"></i>
+    <span id="toastMsg">Pronto!</span>
+  </div>
+
+<script>
+/** ===========================
+ *  Estado e Helpers
+ *  =========================== */
+const $$  = s => document.querySelector(s);
+const $$$ = s => document.querySelectorAll(s);
+
+const STORAGE_KEY = 'chocop_v2_items';
+const RANK_KEY    = 'chocop_v2_rank';
+const UI_KEY      = 'chocop_v2_ui';
+
+let editId = null;
+
+const state = {
+  items: [],
+  rank: {},
+  filter: 'all',
+  search: '',
+  sort: 'dateAsc',
+  pinCritical: true,
+};
+
+const todayISO = () => { const d = new Date(); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); };
+const parseISO = s => new Date(s + 'T00:00:00');
+
+function load(){
+  try{
+    state.items = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    state.rank  = JSON.parse(localStorage.getItem(RANK_KEY)) || {};
+    const ui    = JSON.parse(localStorage.getItem(UI_KEY)) || {};
+    if(ui.search) $$('#search').value = ui.search, state.search = ui.search;
+    if(ui.sort) $$('#sort').value = ui.sort, state.sort = ui.sort;
+    if(typeof ui.pinCritical === 'boolean') $$('#pinCritical').checked = ui.pinCritical, state.pinCritical = ui.pinCritical;
+  }catch(e){ state.items = []; state.rank = {}; }
+}
+function persistUI(){ localStorage.setItem(UI_KEY, JSON.stringify({ search: state.search, sort: state.sort, pinCritical: state.pinCritical })); }
+function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items)); localStorage.setItem(RANK_KEY, JSON.stringify(state.rank)); }
+
+/** ====== Domain ====== */
+function upsertItem(payload){
+  if(editId){
+    const i = state.items.findIndex(x => x.id === editId);
+    if(i>-1){ state.items[i] = {...state.items[i], ...payload}; }
+    toast('Produto atualizado.');
+    editId = null;
+  }else{
+    const id = (crypto?.randomUUID?.() || String(Date.now() + Math.random()));
+    const item = { id, createdAt: Date.now(), ...payload };
+    state.items.push(item);
+    // rank
+    const key = (payload.name || '—').trim().toLowerCase();
+    state.rank[key] = (state.rank[key] || 0) + (Number(payload.qty)||1);
+    toast('Produto adicionado.');
+    notifyBrowser(`Novo produto: ${payload.name || '—'}`, { body: `Validade ${formatDate(payload.expiry)} • Quantidade ${payload.qty||1}` });
+  }
+  save(); render(); clearForm();
+}
+function removeItem(id){
+  const item = state.items.find(x=>x.id===id);
+  state.items = state.items.filter(x => x.id !== id);
+  save(); render();
+  toast('Produto removido.');
+  if(item) notifyBrowser(`Removido: ${item.name}`, { body: `Validade ${formatDate(item.expiry)}` });
+}
+
+function daysLeft(iso){ const a = parseISO(iso); const b = parseISO(todayISO()); return Math.round((a - b) / 86400000); }
+function statusTag(d){
+  if(d === 0) return '<span class="badge tag-today">Vence hoje</span>';
+  if(d > 0 && d <= 3) return '<span class="badge tag-near">Perto</span>';
+  if(d < 0) return '<span class="badge tag-dead">Vencido</span>';
+  return '<span class="badge tag-ok">Ok</span>';
+}
+function formatDate(iso){ const [y,m,d] = iso.split('-'); return `${d}/${m}/${y}`; }
+function capitalize(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+
+/** ====== UI helpers ====== */
+function clearForm(){ ['name','brand','category','batch','expiry','qty','flag'].forEach(id=>{ if(id==='qty') $$('#qty').value = 1; else if(id==='flag') $$('#flag').value = ''; else $$('#'+id).value = ''; }); editId = null; $$('#saveBtn span').textContent = 'Salvar'; }
+function fillForm(item){ $$('#name').value = item.name||''; $$('#brand').value = item.brand||''; $$('#category').value = item.category||''; $$('#batch').value = item.batch||''; $$('#expiry').value = item.expiry||''; $$('#qty').value = item.qty||1; $$('#flag').value = item.flag||''; editId = item.id; $$('#saveBtn span').textContent = 'Atualizar'; window.scrollTo({top:0, behavior:'smooth'}); }
+
+/** ====== Filtering/Sorting/Rendering ====== */
+function applyFilters(items){
+  const q = state.search.trim().toLowerCase();
+  let out = items.filter(x => {
+    const hay = `${x.name} ${x.brand} ${x.category} ${x.batch}`.toLowerCase();
+    const okSearch = !q || hay.includes(q);
+    const d = daysLeft(x.expiry);
+    let okFilter = true;
+    if(state.filter==='today') okFilter = (d===0);
+    else if(state.filter==='near') okFilter = (d>0 && d<=3);
+    else if(state.filter==='ok') okFilter = (d>3);
+    else if(state.filter==='expired') okFilter = (d<0);
+    return okSearch && okFilter;
+  });
+
+  switch(state.sort){
+    case 'dateAsc':  out.sort((a,b)=> a.expiry.localeCompare(b.expiry)); break;
+    case 'dateDesc': out.sort((a,b)=> b.expiry.localeCompare(a.expiry)); break;
+    case 'nameAsc':  out.sort((a,b)=> (a.name||'').localeCompare(b.name||'')); break;
+    case 'nameDesc': out.sort((a,b)=> (b.name||'').localeCompare(a.name||'')); break;
+    case 'daysAsc':  out.sort((a,b)=> daysLeft(a.expiry)-daysLeft(b.expiry)); break;
+  }
+
+  if(state.pinCritical){
+    out.sort((a,b)=>{
+      const da = daysLeft(a.expiry), db = daysLeft(b.expiry);
+      const ra = da===0 ? -3 : (da>0&&da<=3 ? -2 : (da<0 ? -1 : 0));
+      const rb = db===0 ? -3 : (db>0&&db<=3 ? -2 : (db<0 ? -1 : 0));
+      return ra - rb;
+    });
+  }
+  return out;
+}
+
+function render(){
+  const tbody = $$('#tbody');
+  tbody.innerHTML = '';
+  const data = applyFilters(state.items);
+
+  if(data.length===0){
+    tbody.innerHTML = `<tr><td data-label="Info" colspan="7" style="padding:22px;text-align:center;color:#7a5a54">Nenhum item encontrado.</td></tr>`;
+  }else{
+    data.forEach(item=>{
+      const d = daysLeft(item.expiry);
+      const totalWindow = 30; // usado para barra de progresso (aproximação)
+      const pct = Math.max(0, Math.min(100, Math.round(((d<=0?0:d) / totalWindow)*100)));
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td data-label="Produto">
+          <div style="font-weight:800;color:var(--choco-700)">${item.name||'—'}</div>
+          <div style="font-size:var(--fs-xs);color:var(--choco-600)">${item.brand||''} ${item.batch? '• '+item.batch : ''}</div>
+        </td>
+        <td data-label="Categoria">${item.category||'—'}</td>
+        <td data-label="Validade">${formatDate(item.expiry)}</td>
+        <td data-label="Dias" style="font-weight:800">${d}</td>
+        <td data-label="Qtd">
+          <div style="display:flex;align-items:center;gap:6px">
+            <button class="icon-btn qty-dec" title="-1" aria-label="Diminuir"><i class="lucide-minus"></i></button>
+            <strong>${item.qty||1}</strong>
+            <button class="icon-btn qty-inc" title="+1" aria-label="Aumentar"><i class="lucide-plus"></i></button>
+          </div>
+        </td>
+        <td data-label="Status">
+          ${statusTag(d)}
+          <div class="progress" style="margin-top:8px"><i style="width:${pct}%"></i></div>
+        </td>
+        <td data-label="Ações">
+          <div class="actions">
+            <button class="icon-btn" title="Copiar" data-act="copy" aria-label="Duplicar"><i class="lucide-copy"></i></button>
+            <button class="icon-btn" title="Editar" data-act="edit" aria-label="Editar"><i class="lucide-pencil"></i></button>
+            <button class="icon-btn" title="Excluir" data-act="del" aria-label="Excluir"><i class="lucide-trash-2"></i></button>
+          </div>
+        </td>
+      `;
+      tr.querySelector('[data-act="edit"]').onclick = ()=> fillForm(item);
+      tr.querySelector('[data-act="del"]').onclick = ()=>{ if(confirm('Excluir este item?')) removeItem(item.id); };
+      tr.querySelector('[data-act="copy"]').onclick = ()=>{
+        const clone = {...item, id: (crypto?.randomUUID?.() || String(Date.now()+Math.random())), createdAt: Date.now()};
+        state.items.push(clone); save(); render(); toast('Item duplicado.');
+      };
+      tr.querySelector('.qty-inc').onclick = ()=>{ item.qty = (item.qty||1)+1; save(); render(); };
+      tr.querySelector('.qty-dec').onclick = ()=>{ item.qty = Math.max(1,(item.qty||1)-1); save(); render(); };
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Listas de atenção
+  const tList = $$('#todayList');
+  const nList = $$('#nearList');
+  tList.innerHTML = ''; nList.innerHTML = '';
+
+  const today = state.items.filter(x=> daysLeft(x.expiry)===0);
+  const near  = state.items.filter(x=> { const d=daysLeft(x.expiry); return d>0 && d<=3; });
+
+  const renderMini = (list, el) => {
+    if(list.length===0){ el.innerHTML = `<li style="color:#7a5a54">Nada por aqui 🎉</li>`; return; }
+    list.sort((a,b)=> a.expiry.localeCompare(b.expiry)).slice(0,8).forEach(x=>{
+      el.innerHTML += `<li style="display:flex;justify-content:space-between;gap:10px;align-items:center;line-height:1.9"><span>${x.name}</span><span class="badge">${formatDate(x.expiry)}</span></li>`;
+    });
+  };
+  renderMini(today,tList);
+  renderMini(near,nList);
+
+  // Ranking
+  const rankEl = $$('#ranking');
+  rankEl.innerHTML = '';
+  const pairs = Object.entries(state.rank);
+  if(pairs.length===0){ rankEl.innerHTML = `<li style="color:#7a5a54">Sem dados ainda</li>`; }
+  else{
+    pairs.sort((a,b)=> b[1]-a[1]).slice(0,10).forEach(([k,v],i)=>{
+      rankEl.innerHTML += `<li style="display:flex;justify-content:space-between;gap:8px;align-items:center;line-height:1.9"><span>${i+1}. ${capitalize(k)}</span><strong>${v}</strong></li>`;
+    });
+  }
+}
+
+/** ====== WhatsApp ====== */
+function openWhatsApp({items, number}){
+  if(!items.length){ toast('Nada para enviar.'); return; }
+  let lines = [];
+  lines.push(`*ChocoPrime • Lista de Validade*`);
+  lines.push(`Data: ${formatDate(todayISO())}`);
+  lines.push(`--------------------------------`);
+  items.forEach(x=>{
+    const d = daysLeft(x.expiry);
+    const tag = d===0 ? 'HOJE' : (d<0 ? 'VENCIDO' : (d<=3 ? 'PERTO' : `${d}d`));
+    lines.push(`• ${x.name} (${x.qty||1}) • ${formatDate(x.expiry)} • ${tag}${x.brand?` • ${x.brand}`:''}${x.category?` • ${x.category}`:''}`);
+  });
+  const text = encodeURIComponent(lines.join('\n'));
+  let url = `https://wa.me/${(number||'').replace(/\D/g,'')}?text=${text}`;
+  if(!number) url = `https://wa.me/?text=${text}`;
+  window.open(url, '_blank');
+}
+
+/** ====== Toast ====== */
+let toastTimer=null; function toast(msg){ const el = $$('#toast'); $$('#toastMsg').textContent = msg; el.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(()=> el.classList.remove('show'), 2200); }
+
+/** ====== Import/Export ====== */
+function exportJSON(){ const blob = new Blob([JSON.stringify({items:state.items, rank:state.rank}, null, 2)], {type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `chocop-lista-${todayISO()}.json`; a.click(); URL.revokeObjectURL(url); toast('Exportado JSON.'); }
+function importJSON(){ const input = document.createElement('input'); input.type='file'; input.accept='.json,application/json'; input.onchange = e=>{ const file = e.target.files[0]; if(!file) return; const reader=new FileReader(); reader.onload = ()=>{ try{ const data = JSON.parse(reader.result); if(Array.isArray(data.items)) state.items = data.items; if(data.rank && typeof data.rank==='object') state.rank = data.rank; save(); render(); toast('Importado com sucesso.'); }catch(err){ alert('Arquivo inválido.'); } }; reader.readAsText(file); }; input.click(); }
+function exportCSV(){
+  const rows = [['Produto','Marca','Categoria','Lote','Validade','Dias','Qtd','Status']];
+  state.items.forEach(x=>{ const d=daysLeft(x.expiry); const s = d===0? 'Vence hoje' : d<0? 'Vencido' : d<=3? 'Perto' : 'Ok'; rows.push([x.name||'',x.brand||'',x.category||'',x.batch||'',formatDate(x.expiry),String(d),String(x.qty||1),s]); });
+  const csv = rows.map(r=> r.map(v => '"'+String(v).replaceAll('"','""')+'"').join(';')).join('\n');
+  const blob = new Blob(["\uFEFF"+csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `chocop-lista-${todayISO()}.csv`; a.click(); URL.revokeObjectURL(url); toast('Exportado CSV.');
+}
+function printPDF(){ window.print(); toast('Abrindo impressão…'); }
+
+/** ====== Notificações do navegador ====== */
+async function ensureNotificationPermission(){ try{ if(!('Notification' in window)) return false; if(Notification.permission==='granted') return true; if(Notification.permission==='denied') return false; const res = await Notification.requestPermission(); return res==='granted'; }catch{ return false } }
+async function notifyBrowser(title, options={}){ const ok = await ensureNotificationPermission(); if(ok) new Notification(title, options); }
+
+/** ====== QR Code (BarcodeDetector + fallback) ====== */
+const qrSheet = $$('#qrSheet');
+const qrVideo = $$('#qrVideo');
+const qrFile  = $$('#qrFile');
+let qrStream = null; let qrLoop = null;
+
+function openQr(){ qrSheet.classList.add('show'); startCamera(); }
+function closeQr(){ qrSheet.classList.remove('show'); stopCamera(); }
+
+async function startCamera(){
+  try{
+    qrStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio:false });
+    qrVideo.srcObject = qrStream; await qrVideo.play();
+    scanLoop();
+  }catch(err){ toast('Câmera não disponível. Use imagem.'); }
+}
+function stopCamera(){ try{ qrVideo.pause(); if(qrStream) qrStream.getTracks().forEach(t=>t.stop()); }catch{} qrStream=null; if(qrLoop) cancelAnimationFrame(qrLoop); qrLoop=null; }
+
+async function scanLoop(){
+  const hasBarcode = 'BarcodeDetector' in window; const formats = ['qr_code'];
+  let detector = null; if(hasBarcode){ try{ detector = new BarcodeDetector({formats}); }catch{} }
+  const tick = async ()=>{
+    try{
+      if(detector){
+        const codes = await detector.detect(qrVideo);
+        if(codes && codes[0]){ onQrContent(codes[0].rawValue); return; }
+      }
+    }catch{}
+    qrLoop = requestAnimationFrame(tick);
+  };
+  tick();
+}
+
+function onQrContent(text){
+  closeQr();
+  try{
+    // Espera JSON no QR (ex.: {"name":"Trufa 30g", "brand":"Cacau Show", "category":"Trufa", "expiry":"2025-12-31", "qty":3, "batch":"Lote X"})
+    const data = JSON.parse(text);
+    if(data.expiry && !/^\d{4}-\d{2}-\d{2}$/.test(data.expiry)) throw new Error('Data inválida');
+    $$('#name').value = data.name || '';
+    $$('#brand').value = data.brand || '';
+    $$('#category').value = data.category || '';
+    $$('#batch').value = data.batch || '';
+    $$('#expiry').value = data.expiry || '';
+    $$('#qty').value = data.qty || 1;
+    toast('QR lido e formulário preenchido.');
+  }catch{
+    // Caso não seja JSON, tenta interpretar: NOME|MARCA|CATEGORIA|AAAA-MM-DD|QTY|LOTE
+    const parts = String(text).split('|');
+    if(parts.length>=4){
+      $$('#name').value = parts[0]||'';
+      $$('#brand').value = parts[1]||'';
+      $$('#category').value = parts[2]||'';
+      $$('#expiry').value = parts[3]||'';
+      if(parts[4]) $$('#qty').value = parts[4];
+      if(parts[5]) $$('#batch').value = parts[5];
+      toast('QR lido e formulário preenchido.');
+    }else{
+      alert('Conteúdo do QR não reconhecido. Use JSON ou padrão NOME|MARCA|CATEGORIA|AAAA-MM-DD|QTD|LOTE');
+    }
+  }
+}
+
+// Fallback por imagem (decodificação simples via canvas + ZXing lite seria ideal, mas sem libs: usa API nativa quando suportada)
+qrFile.addEventListener('change', async (e)=>{
+  const file = e.target.files?.[0]; if(!file) return;
+  const url = URL.createObjectURL(file);
+  const img = new Image(); img.onload = async ()=>{
+    try{
+      if('BarcodeDetector' in window){
+        const detector = new BarcodeDetector({formats:['qr_code']});
+        const codes = await detector.detect(img);
+        if(codes && codes[0]){ onQrContent(codes[0].rawValue); }
+        else alert('QR não detectado na imagem.');
+      }else{
+        alert('Seu navegador não suporta leitura de QR por imagem.');
+      }
+    }catch{ alert('Falha ao analisar a imagem.'); }
+    URL.revokeObjectURL(url);
+  }; img.src = url;
+});
+
+/** ====== Eventos ====== */
+function debounce(fn, ms=180){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), ms); } }
+
+$$('#saveBtn').addEventListener('click', ()=>{
+  const name = $$('#name').value.trim();
+  const brand = $$('#brand').value.trim();
+  const category = $$('#category').value.trim();
+  const batch = $$('#batch').value.trim();
+  const expiry = $$('#expiry').value;
+  const qty = Number($$('#qty').value||1);
+  const flag = $$('#flag').value;
+
+  if(!name || !expiry){ alert('Preencha pelo menos Nome e Validade.'); return; }
+  if(isNaN(Date.parse(expiry))){ alert('Data de validade inválida.'); return; }
+
+  upsertItem({ name, brand, category, batch, expiry, qty, flag });
+});
+
+$$('#clearBtn').addEventListener('click', clearForm);
+
+$$('#search').addEventListener('input', debounce(e=>{ state.search = e.target.value; persistUI(); render(); }, 150));
+$$('#sort').addEventListener('change', e=>{ state.sort = e.target.value; persistUI(); render(); });
+$$('#pinCritical').addEventListener('change', e=>{ state.pinCritical = e.target.checked; persistUI(); render(); });
+
+$$('#filters').addEventListener('click', e=>{ const chip = e.target.closest('.chip'); if(!chip) return; $$$('#filters .chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); state.filter = chip.dataset.filter; render(); });
+
+$$('#quickChips').addEventListener('click', e=>{ const chip = e.target.closest('.chip'); if(!chip) return; const days = Number(chip.dataset.days||0); const base = new Date(); base.setHours(0,0,0,0); base.setDate(base.getDate()+days); const iso = base.toISOString().slice(0,10); $$('#expiry').value = iso; chip.classList.add('active'); setTimeout(()=>chip.classList.remove('active'),180); });
+
+/* WhatsApp modal */
+const waBackdrop = $$('#waBackdrop');
+function openWaModal(){ waBackdrop.classList.add('show'); }
+function closeWaModal(){ waBackdrop.classList.remove('show'); }
+$$('#whatsBtn').addEventListener('click', openWaModal);
+$$('#waClose').addEventListener('click', closeWaModal);
+waBackdrop.addEventListener('click', e=>{ if(e.target===waBackdrop) closeWaModal(); });
+
+$$('#waSend').addEventListener('click', ()=>{
+  const scope = $$('#waScope').value; const number = $$('#waNumber').value.trim(); let list = [];
+  if(scope==='all'){ list = [...state.items]; }
+  else if(scope==='view'){ list = applyFilters(state.items); }
+  else { list = state.items.filter(x=> { const d = daysLeft(x.expiry); return d===0 || (d>0 && d<=3); }); }
+  closeWaModal(); openWhatsApp({items:list, number});
+});
+
+/* Import/Export */
+$$('#exportJsonBtn').addEventListener('click', exportJSON);
+$$('#importJsonBtn').addEventListener('click', importJSON);
+$$('#exportCsvBtn').addEventListener('click', exportCSV);
+$$('#printBtn').addEventListener('click', printPDF);
+
+/* QR Sheet */
+$$('#qrBtn').addEventListener('click', openQr);
+$$('#qrClose').addEventListener('click', closeQr);
+$$('#qrPick').addEventListener('click', ()=> qrFile.click());
+
+/** ====== Seed opcional no primeiro uso ====== */
+function seedIfEmpty(){
+  if(state.items.length) return;
+  const addDays = d => { const dt = new Date(); dt.setHours(0,0,0,0); dt.setDate(dt.getDate()+d); return dt.toISOString().slice(0,10); };
+  state.items = [
+    {id:(crypto?.randomUUID?.()||String(Date.now()+Math.random())), createdAt:Date.now(), name:'Trufa 30g Ao Leite',  brand:'Cacau Show', category:'Trufa',      batch:'Lote A1', expiry:addDays(0), qty:6},
+    {id:(crypto?.randomUUID?.()||String(Date.now()+Math.random())), createdAt:Date.now(), name:'Tablete 100g Intenso',brand:'Cacau Show', category:'Tablete',   batch:'Lote B4', expiry:addDays(2), qty:3},
+    {id:(crypto?.randomUUID?.()||String(Date.now()+Math.random())), createdAt:Date.now(), name:'Biscoito com Gotas',  brand:'Cacau Show', category:'Biscoiteria',batch:'Lote C2', expiry:addDays(6), qty:5},
+  ];
+  state.rank = { 'trufa 30g ao leite': 10, 'tablete 100g intenso': 5, 'biscoito com gotas': 3 };
+  save();
+}
+
+/** ====== Boot ====== */
+load();
+seedIfEmpty();
+render();
+
+</script>
+</body>
+</html>
