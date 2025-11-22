@@ -285,7 +285,17 @@ tbody td:last-child{ border-bottom:none }
         <button id="qrBtn" class="btn ghost" type="button" title="Ler QR Code"><i class="lucide-qr-code"></i> QR Code</button>
       </div>
     </div>
+     <button id="metaBtn" class="btn" type="button" title="Meta">
+      <i class="lucide-target"></i> Meta do mês
+    </button>
+  </div>
+</div>
   </header>
+<script>
+  document.getElementById('metaBtn').addEventListener('click', () => {
+    window.open('meta.html', '_blank'); // abre a página Meta em nova aba
+  });
+</script>
 
   <main class="container" style="margin-top:16px;">
     <div class="grid">
@@ -322,6 +332,14 @@ tbody td:last-child{ border-bottom:none }
             </label>
             <label style="display:flex;flex-direction:column;gap:6px;">
               <span style="font-size:var(--fs-xs);color:var(--choco-600)">Marca atenção</span>
+              <label style="display:flex;flex-direction:column;gap:6px;">
+  <span style="font-size:var(--fs-xs);color:var(--choco-600)">Local</span>
+  <select id="location" class="select">
+    <option value="loja">Loja</option>
+    <option value="estoque">Estoque</option>
+  </select>
+</label>
+
               <select id="flag" class="select">
                 <option value="">Nenhum</option>
                 <option value="today">Vence hoje</option>
